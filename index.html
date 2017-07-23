@@ -1,0 +1,141 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-app="app">
+
+<div ng-controller="TaskController">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>JSONplaceholder table</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center add-button">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#add_new_task_modal">Add Posts
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                
+                <table  class="table table-bordered table-responsive table-striped">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Body</th>
+                        <th>User Id</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr ng-repeat="task in tasks">
+                        <td>{{ task.id }}</td>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.body }}</td>
+                        <td>{{ task.userId }}</td>
+                        <td class="text-center">
+                            <button ng-click="edit($index)"  class="btn btn-control">Edit</button>
+                            <button ng-click="delete($index)" class="btn btn-control btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    
+    <div class="modal fade" id="add_new_task_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Post</h4>
+                </div>
+                <div class="modal-body">
+
+                    <ul class="alert alert-danger" ng-if="errors.length > 0">
+                        <li ng-repeat="error in errors">
+                            {{ error }}
+                        </li>
+                    </ul>
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input ng-model="task.body" type="text" id="name" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea ng-model="task.title" class="form-control" name="body"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="addTask()">Add Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="modal fade" id="modal_update_task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Task Details</h4>
+                </div>
+                <div class="modal-body">
+
+                    <ul class="alert alert-danger" ng-if="errors.length > 0">
+                        <li ng-repeat="error in errors">
+                            {{ error }}
+                        </li>
+                    </ul>
+
+                    <div class="form-group">
+                        <label for="name">Title</label>
+                        <input ng-model="task_details.title" type="text" id="name" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Body</label>
+                        <textarea ng-model="task_details.body" class="form-control" name="description"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateTask()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+</div>
+
+
+
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>
