@@ -1,3 +1,6 @@
 var angular = require('angular');
-var app = angular.module('app',[]);
-require('./appcontroller')(app);
+require('./style.css');
+//require('./bootstrap.css');
+require('./app');
+require('./bootstrap');
+require('./jquery-3.2.1.min')
